@@ -1,4 +1,4 @@
 prepare:
   val_split: 0.20
 train:
-  max_epochs: 15
+  max_epochs: 5

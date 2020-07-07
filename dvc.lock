@@ -1,30 +1,3 @@
-train:
-  cmd: python code/train_and_eval/train.py /raid/nicolas/cifar10/data/cifar-prepared
-    logs cifar
-  deps:
-  - path: /raid/nicolas/cifar10/data/cifar-prepared
-    md5: 78349643ed809e6df4755ea5ab42040d.dir
-  - path: code/train_and_eval/model.py
-    md5: 8bd543ffa9a7287ddb7cd80d40c31094
-  - path: code/train_and_eval/train.py
-    md5: 552d32932a8bace4491332ba0d6730d5
-  params:
-    params.yaml:
-      train.max_epochs: 10
-  outs:
-  - path: logs/cifar/version_0/
-    md5: 374cc758ea431157f97e16c636cf2c53.dir
-evaluate:
-  cmd: python code/train_and_eval/evaluate.py logs/cifar/version_0 /raid/nicolas/cifar10/data/cifar-prepared
-  deps:
-  - path: /raid/nicolas/cifar10/data/cifar-prepared
-    md5: 78349643ed809e6df4755ea5ab42040d.dir
-  - path: code/train_and_eval/evaluate.py
-    md5: dcdf38d60c313b3db7b7bc3eb0898e98
-  - path: code/train_and_eval/model.py
-    md5: 8bd543ffa9a7287ddb7cd80d40c31094
-  - path: logs/cifar/version_0/
-    md5: 374cc758ea431157f97e16c636cf2c53.dir
 prepare:
   cmd: python code/data_preparation/extract_data.py /raid/nicolas/cifar10/data/cifar-10-batches-py
     /raid/nicolas/cifar10/data/cifar-prepared
@@ -38,4 +11,31 @@ prepare:
       prepare.val_split: 0.2
   outs:
   - path: /raid/nicolas/cifar10/data/cifar-prepared
-    md5: 78349643ed809e6df4755ea5ab42040d.dir
+    md5: 7250ca8ec0ec16513ecef6c39585ebe0.dir
+train:
+  cmd: python code/train_and_eval/train.py /raid/nicolas/cifar10/data/cifar-prepared
+    logs cifar
+  deps:
+  - path: /raid/nicolas/cifar10/data/cifar-prepared
+    md5: 7250ca8ec0ec16513ecef6c39585ebe0.dir
+  - path: code/train_and_eval/model.py
+    md5: 8bd543ffa9a7287ddb7cd80d40c31094
+  - path: code/train_and_eval/train.py
+    md5: 552d32932a8bace4491332ba0d6730d5
+  params:
+    params.yaml:
+      train.max_epochs: 5
+  outs:
+  - path: logs/cifar/version_0/
+    md5: 3af5033fcbfd3337cbe7c481fb610d17.dir
+evaluate:
+  cmd: python code/train_and_eval/evaluate.py logs/cifar/version_0 /raid/nicolas/cifar10/data/cifar-prepared
+  deps:
+  - path: /raid/nicolas/cifar10/data/cifar-prepared
+    md5: 7250ca8ec0ec16513ecef6c39585ebe0.dir
+  - path: code/train_and_eval/evaluate.py
+    md5: dcdf38d60c313b3db7b7bc3eb0898e98
+  - path: code/train_and_eval/model.py
+    md5: 8bd543ffa9a7287ddb7cd80d40c31094
+  - path: logs/cifar/version_0/
+    md5: a4ce9fe1df72644ae4fa6f5f7759437b.dir
