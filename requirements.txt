@@ -1,0 +1,9 @@
+boto3==1.14.14
+imageio==2.8.0
+mlflow==1.9.1
+opencv-python==4.2.0.34
+seaborn==0.10.1
+sklearn
+torch==1.5.1
+torchvision==0.6.1
+pytorch-lightning==0.8.1

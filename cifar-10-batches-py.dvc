@@ -1,0 +1,3 @@
+outs:
+- md5: 2c2c368a819f1df18fd0afa1c052c6c4.dir
+  path: /raid/nicolas/cifar10/data/cifar-10-batches-py

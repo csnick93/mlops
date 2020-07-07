@@ -1,0 +1,29 @@
+stages:
+  prepare:
+    cmd: python code/data_preparation/extract_data.py /raid/nicolas/cifar10/data/cifar-10-batches-py
+      /raid/nicolas/cifar10/data/cifar-prepared
+    deps:
+    - /raid/nicolas/cifar10/data/cifar-10-batches-py
+    - code/data_preparation/extract_data.py
+    params:
+    - prepare.val_split
+    outs:
+    - /raid/nicolas/cifar10/data/cifar-prepared
+  train:
+    cmd: python code/train_and_eval/train.py /raid/nicolas/cifar10/data/cifar-prepared
+      logs cifar
+    deps:
+    - /raid/nicolas/cifar10/data/cifar-prepared
+    - code/train_and_eval/model.py
+    - code/train_and_eval/train.py
+    params:
+    - train.max_epochs
+    outs:
+    - logs/cifar/version_0/
+  evaluate:
+    cmd: python code/train_and_eval/evaluate.py logs/cifar/version_0 /raid/nicolas/cifar10/data/cifar-prepared
+    deps:
+    - /raid/nicolas/cifar10/data/cifar-prepared
+    - code/train_and_eval/evaluate.py
+    - code/train_and_eval/model.py
+    - logs/cifar/version_0/
